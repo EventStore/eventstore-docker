@@ -10,14 +10,19 @@ docker pull eventstore/eventstore-docker
 ```
 Run the container using 
 ```
-docker run -it -p 2113:2113 -p 1113:1113  eventstore/eventstore-docker
+docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore-docker
 ```
 
 ### Web UI ###
 
-Get the docker ip address
+Get the docker ip address 
+Via docker-machine
 ```
 docker-machine ip default
+```
+Via docker
+```
+docker inspect -f "{{ .NetworkSettings.IPAddress }}" eventstore-node
 ```
 Using the ip address and the external http port (defaults to 2113) you can use the browser to view the event store admin ui.
 
