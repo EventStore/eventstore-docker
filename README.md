@@ -16,11 +16,12 @@ docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/event
 ### Web UI ###
 
 Get the docker ip address 
-Via docker-machine
+
+**Via docker-machine**
 ```
 docker-machine ip default
 ```
-Via docker
+**Via docker**
 ```
 docker inspect -f "{{ .NetworkSettings.IPAddress }}" eventstore-node
 ```
