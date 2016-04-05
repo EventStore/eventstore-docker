@@ -4,4 +4,4 @@ echo "NOTE:"
 echo "THIS CONTAINER IS FOR DEVELOPMENT PURPOSES ONLY AND SHOULD NOT BE USED IN PRODUCTION"
 echo ""
 
-eventstored
+exec eventstored
