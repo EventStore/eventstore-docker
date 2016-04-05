@@ -1,16 +1,16 @@
 # Event Store Docker Container
 **Note: This container is for development purposes only**
 
-The docker image will be available via the [docker hub Event Store repository]( https://hub.docker.com/r/eventstore/eventstore-docker/)
+The docker image will be available via the [Docker Hub Event Store Repository]( https://hub.docker.com/r/eventstore/eventstore/)
 
 ### Getting Started ###
 Pull the docker image
 ```
-docker pull eventstore/eventstore-docker
+docker pull eventstore/eventstore
 ```
 Run the container using 
 ```
-docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore-docker
+docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
 ```
 
 ### Web UI ###
@@ -37,7 +37,7 @@ Username and password is `admin` and `changeit` respectively.
 When running the docker image, the user has the ability to provide environment variables.
 e.g.
 ```
-docker run -it -p 2113:2113 -e EVENTSTORE_RUN_PROJECTIONS=None eventstore/eventstore-docker
+docker run -it -p 2113:2113 -e EVENTSTORE_RUN_PROJECTIONS=None eventstore/eventstore
 ```
 The environment variables overrides the values supplied via the configuration file. 
 
