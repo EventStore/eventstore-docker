@@ -13,6 +13,8 @@ Run the container using
 docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
 ```
 
+> Note : The admin UI and atom feeds will only work if you publish the node's http port to a matching port on the host. (i.e. you need to run the container with `-p 2113:2113`)
+
 ### Web UI ###
 
 Get the docker ip address 
