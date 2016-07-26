@@ -12,9 +12,13 @@ RUN apt-get update && apt-get install curl -y &&\
 EXPOSE 1113
 EXPOSE 2113
 
-ONBUILD VOLUME /var/lib/eventstore
-
-COPY eventstore.conf /etc/eventstore/
 COPY entrypoint.sh /
+COPY eventstore.conf /etc/eventstore/
+
+ONBUILD COPY eventstore.conf /etc/eventstore/
+ONBUILD COPY entrypoint.sh /
+ONBUILD USER eventstore
+ONBUILD RUN /entrypoint.sh bootstrap
+ONBUILD VOLUME /var/lib/eventstore
 
 ENTRYPOINT ["/entrypoint.sh"]
