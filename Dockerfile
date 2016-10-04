@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.3
 MAINTAINER Event Store LLP <ops@geteventstore.com>
 
-ENV ES_VERSION=3.9.0
+ENV ES_VERSION=3.9.1
 
 RUN apt-get update && apt-get install curl -y &&\
     curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS/script.deb.sh | bash &&\
