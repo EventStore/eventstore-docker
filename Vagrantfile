@@ -1,12 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$use_public_network = true
+
 # Based on Dockerfile
 $installscript = <<SCRIPT
 #!/bin/bash -eux
 ES_VERSION=3.9.3
 ES_PRERELEASE_VERSION=4.0.0-alpha3
-# ES_USE_PRERELEASE=1
+ES_USE_PRERELEASE=1
 
 apt-get update
 apt-get install cifs-utils -y
@@ -27,6 +29,11 @@ else
 fi
 
 usermod -a -G eventstore vagrant
+chown -R eventstore:eventstore /etc/eventstore/
+chown -R eventstore:eventstore /usr/share/eventstore
+chown -R eventstore:eventstore /var/lib/eventstore
+chown -R eventstore:eventstore /var/log/eventstore
+
 apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 SCRIPT
@@ -48,7 +55,7 @@ if ! pgrep -x "eventstored" > /dev/null
 then
     echo "Eventstore not running.  Starting..."
     # Need the sleep to keep it alive :/
-    nohup eventstored & sleep 1
+    sudo -u eventstore nohup eventstored --run-projections=all & sleep 1
 fi
 SCRIPT
 
@@ -83,6 +90,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "event-store" do |machine|
     machine.vm.network "private_network", ip: "192.168.99.100"
+
+    if $use_public_network
+      machine.vm.network "public_network" # Static IP would be nicer
+    end
+      
     machine.vm.synced_folder "./var/lib/eventstore", "/var/lib/eventstore", create: true, disabled: false
   end
 
