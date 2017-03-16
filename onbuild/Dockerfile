@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Event Store LLP <ops@geteventstore.com>
 
-ENV ES_VERSION=4.0.0-rc2
+ENV ES_VERSION=4.0.0-rc3
 
 RUN apt-get update \
     && apt-get install curl -y \
