@@ -4,6 +4,7 @@ MAINTAINER Event Store LLP <ops@geteventstore.com>
 ENV ES_VERSION=4.0.1
 
 RUN apt-get update \
+    && apt-get install tzdata \
     && apt-get install curl -y \
     && curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS/script.deb.sh | bash \
     && apt-get install eventstore-oss=$ES_VERSION -y \
