@@ -1,13 +1,13 @@
 FROM ubuntu:16.04
 MAINTAINER Event Store LLP <ops@geteventstore.com>
 
-ENV ES_VERSION=4.0.2-RC2 \
+ENV ES_VERSION=4.0.2 \
     DEBIAN_FRONTEND=noninteractive \
     EVENTSTORE_CLUSTER_GOSSIP_PORT=2112
 
 RUN apt-get update \
     && apt-get install tzdata curl iproute2 -y \
-    && curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS-PreRelease/script.deb.sh | bash \
+    && curl -s https://packagecloud.io/install/repositories/EventStore/EventStore-OSS/script.deb.sh | bash \
     && apt-get install eventstore-oss=$ES_VERSION -y \
     && apt-get autoremove \
     && apt-get clean \
