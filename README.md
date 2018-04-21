@@ -59,5 +59,5 @@ docker run -it -p 2113:2113 -e EVENTSTORE_RUN_PROJECTIONS=None eventstore/events
 ```
 The environment variables overrides the values supplied via the configuration file.
 
-More documentation on Event Store's Configuration can be found [here](http://docs.geteventstore.com/server/latest/command-line-arguments/)
+More documentation on Event Store's Configuration can be found [here](https://eventstore.org/docs/server/command-line-arguments/)
 
