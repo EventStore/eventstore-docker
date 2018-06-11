@@ -1,9 +1,14 @@
 FROM ubuntu:16.04
-MAINTAINER Event Store LLP <ops@geteventstore.com>
+LABEL maintainer="Event Store LLP <ops@geteventstore.com>"
 
-ENV ES_VERSION=4.1.1-hotfix1-1 \
+ENV TINI_VERSION=v0.18.0 \
+    ES_VERSION=4.1.1-hotfix1-1 \
     DEBIAN_FRONTEND=noninteractive \
     EVENTSTORE_CLUSTER_GOSSIP_PORT=2112
+
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
 
 RUN apt-get update \
     && apt-get install tzdata curl iproute2 -y \
@@ -22,4 +27,4 @@ COPY entrypoint.sh /
 
 HEALTHCHECK --timeout=2s CMD curl -sf http://localhost:2113/stats || exit 1
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
