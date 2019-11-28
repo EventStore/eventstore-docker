@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Event Store LLP <ops@geteventstore.com>
+MAINTAINER Event Store Ltd <ops@eventstore.com>
 
 ENV ES_VERSION=5.0.5-1 \
     DEBIAN_FRONTEND=noninteractive \
