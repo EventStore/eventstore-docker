@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Event Store Ltd <ops@eventstore.com>
 
-ENV ES_VERSION=5.0.7-1 \
+ENV ES_VERSION=5.0.8-1 \
     DEBIAN_FRONTEND=noninteractive \
     EVENTSTORE_CLUSTER_GOSSIP_PORT=2112
 
